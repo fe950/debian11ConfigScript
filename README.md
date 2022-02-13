@@ -8,14 +8,14 @@ If not, you will be asked about all options.
 ### HowTo
  1. Download Debian 11 netinstall https://www.debian.org/download 
  2. Install Debian without any packages or window managers. (ssh_server is ok)
- 3. Login, and fix the issue that debian dont support sudo out of the box. (replace joe with your username), Reboot
+ 3. Login, and fix that you are not allow to sudo out of the box. (replace joe with your username), Reboot
 ```
 su -
 usermod -aG sudo joe
 reboot
 ```
 
-4.Install wget, download script and give it permission to run
+4. Clone and do the usual thing or just copy below to Install wget, download script and give it permission to run
  ```
 sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/debian11ConfigScript.sh && chmod +x debian11ConfigScript.sh
 ```
