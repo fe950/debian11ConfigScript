@@ -4,6 +4,7 @@ Suited for VM or Desktop use.
 Can be run unattended if the answer is Yes to first question.
 If not, you will be asked about all options.
 
+
 ### HowTo
  1. Download Debian 11 netinstall https://www.debian.org/download 
  2. Install Debian without any packages or window managers. (ssh_server is ok)
