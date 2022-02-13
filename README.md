@@ -23,8 +23,7 @@ If not, you will be asked about all options.
  -installs Snap
 - installs Spotify (snap)
 - installs Mullvad Vpn client (direct download from Mullvad)
-- removes software (a package installed earlier called "tree" is removed as a test)
-- reboot
+- remove software (the small package "tree" is removed as a test)
 
 ### HowTo
  1. Download Debian 11 netinstall https://www.debian.org/download 
@@ -53,6 +52,7 @@ cat debian11ConfigScript.sh
 
 ### TODO
 - Fix sudo 
+- Option to install a unattended VM light, a VM ultra light and a deskotop version
 - Change Dns server to 1.1.1.1
 - Add launcher to nethogs in menu
 - installs qbittorrent that only works on Mullvad

@@ -147,7 +147,10 @@ remove_apps() {
     sudo apt -qq remove tree -y && sudo apt autoremove -y
 }
 reboot() { 
-    sudo shutdown -r now
+    echo""
+    echo $Green"Done, Ready, Finito, Klar, Redo, Jahiz, Amade, Valmis, Taiyaar"
+    echo""
+    echo $red" Please reboot now"
 }
 
 functions_array=(
