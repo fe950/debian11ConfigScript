@@ -1,51 +1,52 @@
-#  Configuration script for Debian 11 to create a minimalistic machine ready configured with Xfce desktop.
-Suited for Vm or Desktop use.
+#  Configuration script for Debian 11 that creates a minimalistic machine ready configured with Xfce desktop.
+Suited for VM or Desktop use.
 
+Can be run unattended if the answer is Yes to first question.
+If not, you will be asked about all options.
 
 
 ### Options 
+- answer_Yes_to_Everything_and_run_Unattended
 - update_system
 - configures norwegian time and date format
 - remove_grub_delay from 5 to 1 sec.
-- install_Xfce (xfdesktop4 xfce4-settings xfce4-panel xfwm4, xfce4-session)
+- install_Xfce bare minimum
 - install optional Xfce tools (Mousepad Gigolo garcon xfce4-datetime-plugin)
-- install_firewall (ufw  gufw)  (need manual activation incase ssh,start with "enable ufw")
-- install_basic debian apps (curl man-db manpages dnsutils mc lynx nmap baobab nethogs ark okular gwenview git xeyes)
+- install_firewall (ufw  gufw)  (need manual activation in case ssh,start with "enable ufw")
+- install_basic debian apps (curl, man-db, manpages, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, viewnior, git)
 - install common desktop tools (gimp, vlc gparted, ffmpeg, wireshark, geogebra, librecad, obs studio)
-- installs qbittorrent
-- configuration of terminal (aliases and nano as preselected editor)
- -install minimalistic browser (qutebrowser and python3)
-- install python (python3 and pip)
-- install_firefox (firefox-esr with optional extension-ublock-origin and configuration)
--Snap
-- Spotify (installed with snap
+- configer terminal (aliases and nano as preselected editor)
+- option to set setuid on nethogs ( this is considered insecure by debian, use at your own risk)
+ -install minimalistic browser (qutebrowser)
+- install python
+- install_firefox
+ -installs Snap
+- installs Spotify (snap)
 - installs Mullvad Vpn client (direct download from Mullvad)
-- removes software (only xeyes)
+- removes software (a package installed earlier called "tree" is removed as a test)
 - reboot
-
 
 ### HowTo
  1. Download Debian 11 netinstall https://www.debian.org/download 
- 2. Install Debian without any packages or window managers.
- 3. Login, and fix the issue that debian dont support sudo out of the box. (replace joe with username)
+ 2. Install Debian without any packages or window managers. (ssh_server is ok)
+ 3. Login, and fix the issue that debian dont support sudo out of the box. (replace joe with your username), Reboot
 ```
 su -
 usermod -aG sudo joe
+/sbin/reboot
 ```
-4.install wget and download script and give it permission to run
+
+4.Install wget, download script and give it permission to run
  ```
-su
-apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11/main/easy_debian11.sh && chmod +x easy_debian11.sh
-usermod -aG sudo YOUR_USERNAME
-exit
+sudo apt install wget -y && wget https://github.com/fe950/debian11ConfigScript/blob/main/debian11ConfigScript.sh && chmod +x debian11ConfigScript.sh
 ```
-5. Review and make changes to fit your needs.
+5. Review and make changes that fit your needs.
 ```
-cat script.sh
+cat debian11ConfigScript.sh
 ```
 6. Run script
 ```
-./easy_debian11.sh
+./debian11ConfigScript.sh
 
 ```
 
@@ -53,11 +54,13 @@ cat script.sh
 ### TODO
 - Fix sudo 
 - Change Dns server to 1.1.1.1
+- Add launcher to nethogs in menu
+- installs qbittorrent that only works on Mullvad
 - Automatic innstallation av pub og private ssh keys
-- Cryptomator or simular
 - rsync or simular client to Onedrive, google Drive
 - Configure Sambashare
 - Nvidia driver installation
 - Debian Hardening
 - flatpack
 - tor browser
+- Cryptomator or simular

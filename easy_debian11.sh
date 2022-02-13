@@ -50,7 +50,7 @@ change_locales() {
     sudo locale-gen
     sudo update-locale LC_TIME=nb_NO.UTF-8
 }
-# minimal install guide https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html
+# Xfce minimal install guide https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html
 install_xfce_core() {
     sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal thunar -y
 }
@@ -58,13 +58,8 @@ install_xfce_tools() {
     sudo apt -qq install Mousepad Gigolo garcon xfce4-datetime-plugin -y   
 }
 install_firewall() {
-    sleep 1
-    echo $bold$orange'Firewall is not enabled, remember to start with "enable ufw"'$normal
-    sleep 1
-    echo "Install will continue in a few seconds"
-    sleep 3
+    #Firewall is not enabled, so you can run this from ssh. Remember to start with "enable ufw"
     sudo apt -qq install ufw gufw -y
-    #sudo ufw enable #enable this if you dont install over ssh
 }
 install_debian_basics_apps() {
     sudo apt -qq install curl man-db manpages dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git tree -y
@@ -73,7 +68,7 @@ install_common_desktop_apps() {
     sudo apt -qq install gimp vlc gparted ffmpeg wireshark geogebra librecad obs-studio -y
 }
 configure_terminal() {
-    #root terminal
+    #configure root terminal
     echo "alias tid='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias klocka='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias klockan='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
@@ -81,7 +76,7 @@ configure_terminal() {
     echo "alias la='ls -A'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias l='ls -CF'" | sudo tee -a /root/.bashrc > /dev/null
     echo 'SELECTED_EDITOR="/bin/nano"' | sudo tee /root/.selected_editor > /dev/null
-    #user terminal
+    #configure user terminal
     echo "alias tid='date "+%T"'" >> ~/.bashrc
     echo "alias klocka='date "+%T"'" >> ~/.bashrc
     echo "alias klockan='date "+%T"'" >> ~/.bashrc
