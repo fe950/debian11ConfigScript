@@ -12,7 +12,7 @@ If not, you will be asked about all options.
 ```
 su -
 usermod -aG sudo joe
-/sbin/reboot
+reboot
 ```
 
 4.Install wget, download script and give it permission to run
