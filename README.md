@@ -17,7 +17,7 @@ reboot
 
 4.Install wget, download script and give it permission to run
  ```
-sudo apt install wget -y && wget https://github.com/fe950/debian11ConfigScript/blob/main/debian11ConfigScript.sh && chmod +x debian11ConfigScript.sh
+sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/debian11ConfigScript.sh && chmod +x debian11ConfigScript.sh
 ```
 5. Review and make changes that fit your needs.
 ```
