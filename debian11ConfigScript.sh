@@ -94,7 +94,6 @@ install_python3() {
     sudo apt -qq install python3 python3-pip -y
 }
 install_minimal_browser() {
-    echo ${red} "This will also install Python3"$normal
     sudo apt -qq install qutebrowser -y
 }
 install_firefox() {
