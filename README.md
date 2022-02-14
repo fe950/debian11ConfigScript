@@ -35,7 +35,7 @@ cat debian11ConfigScript.sh
 - configures locales with norwegian time and date format
 - install firewall (ufw  gufw) (not automaticly activated)
 - install minimal Xfce desktop
-- install basic packages (curl dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo garcon python)
+- install basic packages (curl dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo python)
 - install packages for desktop (gimp, vlc gparted, geogebra, librecad)
 - install Mullvad Vpn client (direct download from Mullvad)
 - remove packages (the small package "tree" is removed as a test)
