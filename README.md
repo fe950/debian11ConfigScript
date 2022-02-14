@@ -2,7 +2,7 @@
 Suited for VM or Desktop use.
 
 Can be run unattended if the answer is Yes to the first question.
-If not, you will be asked before every options.
+If not, you will be asked before every option.
 
 
 ### HowTo
