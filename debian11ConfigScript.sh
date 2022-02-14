@@ -86,10 +86,12 @@ set_dns_to_cloudflare() {
 }
 reboot() { 
     echo""
-    echo "Done, Ready, Finito, Klar, Redo, Jahiz, Amade, Valmis, Taiyaar"
+    echo "Everything is done"
     echo""
     echo " Please reboot now"
+    exit
 }
+
 
 functions_array=(
     answer_yes_to_everything_and_run_unattended
