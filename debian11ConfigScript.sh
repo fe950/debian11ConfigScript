@@ -1,40 +1,30 @@
 #!/bin/bash
-bold=`echo -en "\e[1m"`
-purple=`echo -en "\e[35m"`
-orange=`echo -en "\e[33m"`
-red=`echo -en "\e[31m"`
-green=`echo -en "\e[32m"`
-lightblue=`echo -en "\e[94m"`
-underline=`echo -en "\e[4m"`
-normal=`echo -en "\e[0m"`
+
 #if root stop
 if ! [ "$EUID" -ne 0 ] ; then
-    echo "${orange}Dont run as root.$normal"
+    echo "Dont run as root, use sudo."
     exit
 fi
+
 #install sudo if not already installed, NOT WORKING
 if ! hash sudo 2>/dev/null; then
-    echo "${purple}installing sudo$normal"
+    echo "installing sudo"
     su -c "apt install sudo ; echo '$USER ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo"
 fi
 
 
-Answer_Yes_to_Everything_and_run_Unattended() {
+answer_yes_to_everything_and_run_unattended() {
     update_system
-    remove_grub_delaychange_locales
-    install_xfce_core
-    install_xfce_tools
-    install_debian_basics_apps
-    install_common_desktop_apps
+    remove_grub_delay
+    change_locales
+    install_firewall
+    install_xfce
+    install_basic_packages
+    install_packages_for_desktop
     configure_terminal
-    run_nethogs_as_root
-    install_python3
-    install_minimal_browser
-    install_firefox
-    install_spotify
-    install_snap
     install_mullvad
     remove_apps
+    set_dns_to_cloudflare
     reboot    
 }
 
@@ -50,91 +40,18 @@ change_locales() {
     sudo locale-gen
     sudo update-locale LC_TIME=nb_NO.UTF-8
 }
-# Xfce minimal install guide https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html
-install_xfce_core() {
-    sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal thunar -y
-}
-install_xfce_tools() {
-    sudo apt -qq install Mousepad Gigolo garcon xfce4-datetime-plugin -y   
-}
 install_firewall() {
-    #Firewall is not enabled, so you can run this from ssh. Remember to start with "enable ufw"
+    #Firewall needs to be enabled manually after reboot
     sudo apt -qq install ufw gufw -y
 }
-install_debian_basics_apps() {
-    sudo apt -qq install curl man-db manpages dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git tree -y
+install_xfce() {
+    sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal thunar -y
 }
-install_common_desktop_apps() {
-    sudo apt -qq install gimp vlc gparted ffmpeg wireshark geogebra librecad obs-studio -y
+install_basic_packages() {
+    sudo apt -qq install curl dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo garcon xfce4-datetime-plugin tree -y   
 }
-configure_terminal() {
-    #configure root terminal
-    echo "alias tid='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
-    echo "alias klocka='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
-    echo "alias klockan='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
-    echo "alias ll='ls -alF'" | sudo tee -a /root/.bashrc > /dev/null
-    echo "alias la='ls -A'" | sudo tee -a /root/.bashrc > /dev/null
-    echo "alias l='ls -CF'" | sudo tee -a /root/.bashrc > /dev/null
-    echo 'SELECTED_EDITOR="/bin/nano"' | sudo tee /root/.selected_editor > /dev/null
-    #configure user terminal
-    echo "alias tid='date "+%T"'" >> ~/.bashrc
-    echo "alias klocka='date "+%T"'" >> ~/.bashrc
-    echo "alias klockan='date "+%T"'" >> ~/.bashrc
-    echo "alias ll='ls -alF'" >> ~/.bashrc
-    echo "alias la='ls -A'" >> ~/.bashrc
-    echo "alias l='ls -CF'" >> ~/.bashrc
-    echo 'SELECTED_EDITOR="/bin/nano"' >> ~/.selected_editor
-}  
-run_nethogs_as_root() {
-    #Allow to run nethogs as not root, Debian consider this unsecure, use at your own risk.
-    echo sudo chmod u+s /sbin/nethogs
-    echo "alias nethogs='/sbin/nethogs'" >> ~/.bashrc
-}
-install_python3() {
-    sudo apt -qq install python3 python3-pip -y
-}
-install_minimal_browser() {
-    sudo apt -qq install qutebrowser -y
-}
-install_firefox() {
-    sudo apt -qq install firefox-esr -y
-    firefox-esr&
-    sleep 5
-    pkill -f firefox
-    sleep 2
-    install_firefox_plugins
-    configure_firefox
- }   
-install_firefox_plugins() {
-    sudo apt -qq  webext-ublock-origin-firefox  -y
-}    
-configure_firefox() { 
-    prefix="/home/$USER/.mozilla/firefox"
-    suffix=".default-esr/"
-    path=""
-    for f in "${prefix}"/*"${suffix}"; do
-        path="$f""user.js"
-    done
-    echo $path
-    echo "user_pref(\"browser.contentblocking.category\",custom);
-    user_pref(\"browser.privatebrowsing.autostart\", true);
-    user_pref(\"browser.shell.checkDefaultBrowser\", true);
-    user_pref(\"network.cookie.cookieBehavior\",1);
-    user_pref(\"network.cookie.lifetimePolicy\",2);
-    user_pref(\"privacy.donottrackheader.enabled\", true);
-    user_pref(\"privacy.trackingprotection.enabled\", true);
-    user_pref(\"privacy.trackingprotection.socialtracking.enabled\", true);
-    user_pref(\"signon.rememberSignons\", false);
-    " | sudo tee $path
-}
-install_spotify() {
-    sudo apt -qq install snapd -y
-    sudo snap install core
-    sudo snap install spotify
-}
-install_snap() {
-    sudo apt -qq install snapd -y
-    sudo snap install core
+install_packages_for_desktop() {
+    sudo apt -qq install gimp vlc gparted geogebra librecad -y
 }
 install_mullvad() {
     wget --content-disposition https://mullvad.net/download/app/deb/latest
@@ -145,47 +62,65 @@ install_mullvad() {
 remove_apps() {
     sudo apt -qq remove tree -y && sudo apt autoremove -y
 }
+configure_terminal() {
+    #root terminal
+    echo "alias tid='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
+    echo "alias klocka='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
+    echo "alias klockan='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
+    echo "alias ll='ls -alF'" | sudo tee -a /root/.bashrc > /dev/null
+    echo "alias la='ls -A'" | sudo tee -a /root/.bashrc > /dev/null
+    echo "alias l='ls -CF'" | sudo tee -a /root/.bashrc > /dev/null
+    echo 'SELECTED_EDITOR="/bin/nano"' | sudo tee /root/.selected_editor > /dev/null
+    #user terminal
+    echo "alias tid='date "+%T"'" >> ~/.bashrc
+    echo "alias klocka='date "+%T"'" >> ~/.bashrc
+    echo "alias klockan='date "+%T"'" >> ~/.bashrc
+    echo "alias ll='ls -alF'" >> ~/.bashrc
+    echo "alias la='ls -A'" >> ~/.bashrc
+    echo "alias l='ls -CF'" >> ~/.bashrc
+    echo 'SELECTED_EDITOR="/bin/nano"' >> ~/.selected_editor
+}
+set_dns_to_cloudflare() {
+    #Set dns server to cloudflare
+    echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
+}
 reboot() { 
     echo""
-    echo $Green"Done, Ready, Finito, Klar, Redo, Jahiz, Amade, Valmis, Taiyaar"
+    echo "Done, Ready, Finito, Klar, Redo, Jahiz, Amade, Valmis, Taiyaar"
     echo""
-    echo $red" Please reboot now"
+    echo " Please reboot now"
 }
 
 functions_array=(
-    Answer_Yes_to_Everything_and_run_Unattended
+    answer_yes_to_everything_and_run_unattended
     update_system
-    remove_grub_delaychange_locales
-    install_xfce_core
-    install_xfce_tools
-    install_debian_basics_apps
-    install_common_desktop_apps
-    configure_terminal
-    run_nethogs_as_root
-    install_python3
-    install_minimal_browser
-    install_firefox
-    install_spotify
-    install_snap
+    remove_grub_delay
+    change_locales
+    install_firewall
+    install_xfce
+    install_basic_packages
+    install_packages_for_desktop
     install_mullvad
     remove_apps
+    configure_terminal
+    set_dns_to_cloudflare
     reboot
     )
 if [[ " $# " -ne 0 ]]; then
     for i in $@
     do
         if [[ " ${functions_array[@]} " =~ " ${i} " ]]; then
-            echo "${green}Option ${i} valid$normal"
+            echo "Option ${i} valid"
             ${i} #exec function
         else
-            echo "${red}Unknown option ${i}$normal"
+            echo "Unknown option ${i}"
         fi
     done
 else
     for i in "${functions_array[@]}"; do
         formatted1=${i//_/ }
         formatted2=${formatted1^}
-        echo -n "${purple}${formatted2^} (y/n)? $normal"
+        echo -n "${formatted2^} (y/n)? "
         read answer
         if [ "$answer" != "${answer#[Yy]}" ] ;then
             ${i}
