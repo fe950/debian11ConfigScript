@@ -48,7 +48,7 @@ install_xfce() {
     sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal thunar -y
 }
 install_basic_packages() {
-    sudo apt -qq install curl dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo xfce4-datetime-plugin tree -y   
+    sudo apt -qq install curl dnsutils net-tools tcpdump mc lynx man nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo xfce4-datetime-plugin tree -y   
 }
 install_packages_for_desktop() {
     sudo apt -qq install gimp vlc gparted geogebra librecad -y
