@@ -33,7 +33,7 @@ cat debian11ConfigScript.sh
 ```
 ./debian11ConfigScript.sh
 
-``
+```
 Note: If script is runnig more then once, multiple rows is created in the files 
 .bashrc
 /root/,bashrc
