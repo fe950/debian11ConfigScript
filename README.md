@@ -1,5 +1,5 @@
 #  Configuration script for Debian 11 that creates a minimalistic machine ready configured with Xfce desktop.
-Suited for VM or Desktop use.
+For unattended configuration of configuration and software for  VM or Desktop use.
 
 Option to choose between 3 template that install without user interaction.
 
