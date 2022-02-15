@@ -33,7 +33,19 @@ cat debian11ConfigScript.sh
 ```
 ./debian11ConfigScript.sh
 
-```
+``
+Note: If script is runnig more then once, multiple rows is created in the files 
+.bashrc
+/root/,bashrc
+/etc/lokales.gen
+ To prevent that script renames it self after first run.
+Rename it back and clean the files in the end.
+
+
+
+
+
+`
 
 ### Headless server
 - change startup delay in Grub from 5 to 1 sec.
@@ -48,7 +60,7 @@ Like Headless server +
 - minimal Xfce installation
 - a small browser, Falcon, editor: mousepad helper for mounting: gigolo, image viewer: viewnior
 
-### for Desktop use
+### For Desktop use
 Like Headless server+ minimal Xfce +
 - Firewall (ufw  gufw) (not automaticly activated
 - ullvad Vpn client (direct download from Mullvad)
@@ -60,8 +72,8 @@ Like Headless server+ minimal Xfce +
 
 
 ### TODO
-- Fix so script can be run with sudo (risk for timeout now)
-
+- Fix so script can be run more than once. 
+- Fix so script can be run with sudo (risk for timeout if slow download speed)
 - Add wireshark to packages, (install is interupted by a dialog)
 - Add launcher to nethogs in menu as non root user
 - Installs qbittorrent that only bind to Mullvad adapter
