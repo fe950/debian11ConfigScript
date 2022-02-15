@@ -1,8 +1,14 @@
 #  Configuration script for Debian 11 that creates a minimalistic machine ready configured with Xfce desktop.
 Suited for VM or Desktop use.
 
-Can be run unattended if the answer is Yes to the first question.
-If not, you will be asked before every option.
+Option to choose between 3 template that install without user interaction.
+
+1. headless server with only base tools and python installed
+2- Like 1 + minimal Xfce desktop 
+3. Full desktop version with more programs installed.
+
+Can also be run in manual mode ther you are prompted for each option 
+
 
 
 ### HowTo
@@ -28,19 +34,25 @@ cat debian11ConfigScript.sh
 ./debian11ConfigScript.sh
 
 ```
-### Options 
-- answer_Yes_to_Everything_and_run_Unattended
-- update_system
+
+### Headless server
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with norwegian time and date format
-- install firewall (ufw  gufw) (not automaticly activated)
-- install minimal Xfce desktop
-- install basic packages (curl dnsutils net-tools tcpdump mc lynx nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo python)
-- install packages for desktop (gimp, vlc gparted, geogebra, librecad)
-- install Mullvad Vpn client (direct download from Mullvad)
-- remove packages (the small package "tree" is removed as a test)
+- basic packages (curl wget man dnsutils net-tools tcpdump mc lynx nmap nethogs and gir
+- ption to remove packages
 - configure terminal (aliases and nano as preselected editor)
 - setDNS_toCloudflare
+
+### With minimal Xfce Desktop environment
+Like Headless server +
+- minimal Xfce installation
+- a small browser, Falcon, editor: mousepad helper for mounting: gigolo, image viewer: viewnior
+
+### for Desktop use
+Like Headless server+ minimal Xfce +
+- Firewall (ufw  gufw) (not automaticly activated
+- ullvad Vpn client (direct download from Mullvad)
+- more packages: gimp, vlc gparted, geogebra, librecad
 
 
 
@@ -48,8 +60,8 @@ cat debian11ConfigScript.sh
 
 
 ### TODO
-- Fix sudo 
-- Option to install a unattended VM light, a VM ultra light and a deskotop version
+- Fix so script can be run with sudo (risk for timeout now)
+
 - Add wireshark to packages, (install is interupted by a dialog)
 - Add launcher to nethogs in menu as non root user
 - Installs qbittorrent that only bind to Mullvad adapter
