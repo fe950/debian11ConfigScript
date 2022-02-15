@@ -1,35 +1,83 @@
-#!/bin/bash
+#!/bin/bash 
 
-#if root stop
-if ! [ "$EUID" -ne 0 ] ; then
-    echo "Dont run as root, use sudo."
-    exit
-fi
+#Renames the scriptfile after first run.
+# This is to prevent the script from running multiple times.
+# Nothing dangerous will happend, but for now you will end up with duplicate
+# lines in eof in /etc/locale.gen, /root/.bashrc, and .bashrc.
+# Just clean those files and you can runs script multiple times without problem.
 
-#install sudo if not already installed, NOT WORKING
-if ! hash sudo 2>/dev/null; then
-    echo "installing sudo"
-    su -c "apt install sudo ; echo '$USER ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo"
-fi
+mv "$0" debian11ConfigScript-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh 
 
 
-answer_yes_to_everything_and_run_unattended() {
-    update_system
-    remove_grub_delay
-    change_locales
-    install_firewall
-    install_xfce
-    install_basic_packages
-    install_packages_for_desktop
-    configure_terminal
-    install_mullvad
-    remove_apps
-    set_dns_to_cloudflare
-    reboot    
+# Fancy Colours in script
+#Colours 
+RED=`tput setaf 1 && tput setab 7`
+GREEN=`tput setaf 2`
+NC=`tput sgr0`
+
+
+
+
+# ------------------Yes or No function--------------------
+# 
+function askYesNo {
+        QUESTION=$1
+        DEFAULT=$2
+        if [ "$DEFAULT" = true ]; then
+                OPTIONS="[Y/n]"
+                DEFAULT="y"
+            else
+                OPTIONS="[y/N]"
+                DEFAULT="n"
+        fi
+        read -p "$QUESTION $OPTIONS " -n 1 -s -r INPUT
+        INPUT=${INPUT:-${DEFAULT}}
+        echo ${INPUT}
+        if [[ "$INPUT" =~ ^[yY]$ ]]; then
+            ANSWER=true
+        else
+            ANSWER=false
+        fi
 }
+# --------------END Yes or No function---------------------
 
-update_system() {
-    sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt -qq full-upgrade -y && sudo apt -qq autoremove -y
+
+
+
+# ------------------Start Initial script-------------------
+clear
+echo ""
+echo " #######################################################################################"
+echo "  #                                                                                     #"
+echo "   #                       Welcome to debian 11 config script                            #"
+echo "    #                                                                                     #"
+echo "   #                  https://github.com/fe950/debian11ConfigScript                      #"
+echo "  #                                                                                     #"
+echo " #                                                                                     #"
+echo " #                        Licensed to.............well nothing...                     #"
+echo "  #                       ....just be nice.                                            #"
+echo "   #                                                                                     #"
+echo "    #######################################################################################"
+echo ""
+sleep 1
+askYesNo $GREEN"Do you want to start?"$NC true
+DOIT=$ANSWER
+if [ "$DOIT" = false ]; then
+echo "Ok, exiting...."
+sleep 1
+exit
+fi
+
+
+
+
+# -------------START FUNCTIONS-----------------------------
+only_basic_packages() {
+    sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt -qq full-upgrade -y
+    sudo apt -qq install curl wget dnsutils net-tools tcpdump mc lynx man nmap nethogs tree python3 python3-pip -y
+    # preconfigure git for use
+    sudo apt -qq install git -y
+    echo -e "[user]\n\temail = bill.gates@hotmail.com" > ~/.gitconfig
 }
 remove_grub_delay() {
     sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/' /etc/default/grub
@@ -45,13 +93,11 @@ install_firewall() {
     sudo apt -qq install ufw gufw -y
 }
 install_xfce() {
-    sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal thunar -y
+    sudo apt -qq install xfdesktop4 xfce4-settings xfce4-panel xfwm4 xfce4-session xfce4-terminal xfce4-datetime-plugin thunar mousepad viewnior falkon gigolo  -y
 }
-install_basic_packages() {
-    sudo apt -qq install curl dnsutils net-tools tcpdump mc lynx man nmap nethogs viewnior git falkon python3 python3-pip mousepad gigolo xfce4-datetime-plugin tree -y   
-}
-install_packages_for_desktop() {
+install_packages_for_desktop_use() {
     sudo apt -qq install gimp vlc gparted geogebra librecad -y
+    #sudo apt -qq install firefox-esr -y
 }
 install_mullvad() {
     wget --content-disposition https://mullvad.net/download/app/deb/latest
@@ -60,7 +106,7 @@ install_mullvad() {
     rm ./MullvadVPN*.deb
 }
 remove_apps() {
-    sudo apt -qq remove tree -y && sudo apt autoremove -y
+    sudo apt -qq remove example-app -y
 }
 configure_terminal() {
     #root terminal
@@ -84,48 +130,117 @@ set_dns_to_cloudflare() {
     #Set dns server to cloudflare
     echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
 }
-reboot() { 
-    echo""
-    echo "Everything is done"
-    echo""
-    echo " Please reboot now"
-    exit
+stop_unattended_run() {
+    sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt -qq full-upgrade -y && sudo apt -qq autoremove -y
+      echo ""
+      echo $GREEN"Everything is ready."$RED
+      sudo /sbin/shutdown -r +1
+      echo $NC""
+      exit
+}
+# ----------------END -FUNCTIONS--------------------------
+
+
+
+
+# -----START PRECONFIGURED MACHINES-----------------------
+
+# Headless Server
+install_headless_server_Unattended() {
+    only_basic_packages
+    remove_grub_delay
+    change_locales
+    #install_firewall
+    #install_xfce
+    #install_packages_for_desktop_use
+    configure_terminal
+    #install_mullvad
+    remove_apps
+    set_dns_to_cloudflare
+    stop_unattended_run 
 }
 
+#Basic with Xfce
+install_minimal_desktop_Unattended() {
+    only_basic_packages
+    remove_grub_delay
+    change_locales
+    #install_firewall
+    install_xfce
+    #install_packages_for_desktop_use
+    configure_terminal
+    #install_mullvad
+    remove_apps
+    set_dns_to_cloudflare
+    stop_unattended_run 
+}
 
-functions_array=(
-    answer_yes_to_everything_and_run_unattended
-    update_system
+# Install for desktop with everything Included
+install_everything_for_Desktop__Unattended() {
+    only_basic_packages
     remove_grub_delay
     change_locales
     install_firewall
     install_xfce
-    install_basic_packages
-    install_packages_for_desktop
+    install_packages_for_desktop_use
+    configure_terminal
     install_mullvad
     remove_apps
-    configure_terminal
     set_dns_to_cloudflare
-    reboot
+    stop_unattended_run 
+}
+
+#------------END PRECONFIGURED MACHINES-------------------
+
+
+
+
+# -------START Array part, this control the order---------
+functions_array=(
+    install_headless_server_Unattended
+    install_minimal_desktop_Unattended
+    install_everything_for_Desktop__Unattended
+    only_basic_packages
+    remove_grub_delay
+    change_locales
+    install_firewall
+    install_xfce
+    install_packages_for_desktop_use
+    configure_terminal
+    install_mullvad
+    remove_apps
+    set_dns_to_cloudflare   
     )
-if [[ " $# " -ne 0 ]]; then
-    for i in $@
-    do
-        if [[ " ${functions_array[@]} " =~ " ${i} " ]]; then
-            echo "Option ${i} valid"
-            ${i} #exec function
-        else
-            echo "Unknown option ${i}"
-        fi
-    done
-else
-    for i in "${functions_array[@]}"; do
-        formatted1=${i//_/ }
-        formatted2=${formatted1^}
-        echo -n "${formatted2^} (y/n)? "
-        read answer
-        if [ "$answer" != "${answer#[Yy]}" ] ;then
-            ${i}
-        fi
-    done
-fi
+
+
+
+
+
+# -------------------MAIN LOOP----------------------------
+for i in "${functions_array[@]}"
+        do
+            sleep 1
+            askYesNo $GREEN"Do you want to $i ?"$NC false
+            DOIT=$ANSWER
+            if [ "$DOIT" = true ]; then
+            $i
+            fi
+
+        done
+
+
+
+#Finish and reboot for manual runs
+sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt -qq full-upgrade -y && sudo apt -qq autoremove -y
+echo ""
+
+echo $GREEN"Ready, Finito, Redo, Klar..."
+echo $RED"Please reboot now."$NC
+askYesNo $RED"Do you want to reboot now?"$NC false
+            DOIT=$ANSWER
+            if [ "$DOIT" = true ]; then
+            sudo /sbin/shutdown +0
+            fi
+
+
+exit
