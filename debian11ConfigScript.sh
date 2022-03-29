@@ -105,11 +105,39 @@ install_mullvad() {
     sleep 1
     rm ./MullvadVPN*.deb
 }
+install_brave-nightly() {
+    sudo apt remove -qq falkon-y
+    sudo apt install -qq apt-transport-https curl -y
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-nightly-archive-keyring.gpg https://brave-browser-apt-nightly.s3.brave.com/brave-browser-nightly-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-nightly-archive-keyring.gpg arch=amd64] https://brave-browser-apt-nightly.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-nightly.list
+    sudo apt -qq update && sudo apt -qq install brave-browser-nightly -y
+}
+install_torbrowser-launcher() {
+    sudo apt -qq install flatpak -y
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    
+   for run in {1..5}; do echo ""; done
+    echo $GREEN"     To finish Tor setup, do a MANUAL reboot AFTER this script is done."
+    echo "     Then run part 2 of the script. Its a requirement when using flatpack."
+    askYesNo "     Can you do that?"$NC true
+    DOIT=$ANSWER
+    if [ "$DOIT" = false ]; then
+    for run in {1..3}; do echo ""; done
+    echo -n "Yeah " && sleep 0.7 && echo -n "well " && sleep 0.3
+    for run in {1..6}; do sleep 0.4 && echo -n "."; done
+    echo "" && echo "" && sleep 1.4 && echo -n " You " && sleep 0.6
+    echo -n "know, " && sleep 1 && echo -n "thats " && sleep 0.4 && echo -n "just " && sleep 0.4
+    echo -n "like " && sleep 0.7 && echo -n "your" && sleep 0.3
+    for run in {1..5}; do sleep 0.4 && echo -n "."; done
+    echo -n "opinion  " && sleep 2 && echo "   Just DO it! "  && sleep 2
+    fi
+}
 remove_apps() {
     sudo apt -qq remove example-app -y
 }
 configure_terminal() {
     #root terminal
+    echo "alias cls='clear "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias tid='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias klocka='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias klockan='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
@@ -118,6 +146,7 @@ configure_terminal() {
     echo "alias l='ls -CF'" | sudo tee -a /root/.bashrc > /dev/null
     echo 'SELECTED_EDITOR="/bin/nano"' | sudo tee /root/.selected_editor > /dev/null
     #user terminal
+    echo "alias cls='clear "+%T"'" >> ~/.bashrc
     echo "alias tid='date "+%T"'" >> ~/.bashrc
     echo "alias klocka='date "+%T"'" >> ~/.bashrc
     echo "alias klockan='date "+%T"'" >> ~/.bashrc
@@ -155,7 +184,9 @@ install_headless_server_Unattended() {
     #install_packages_for_desktop_use
     configure_terminal
     #install_mullvad
-    remove_apps
+    #install_brave-nightly
+    #install_torbrowser-launcher
+    #remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
 }
@@ -165,11 +196,12 @@ install_minimal_desktop_Unattended() {
     only_basic_packages
     remove_grub_delay
     change_locales
-    #install_firewall
+    install_firewall
     install_xfce
     #install_packages_for_desktop_use
     configure_terminal
-    #install_mullvad
+    install_mullvad
+    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
@@ -185,6 +217,8 @@ install_everything_for_Desktop__Unattended() {
     install_packages_for_desktop_use
     configure_terminal
     install_mullvad
+    install_brave-nightly
+    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
@@ -208,6 +242,8 @@ functions_array=(
     install_packages_for_desktop_use
     configure_terminal
     install_mullvad
+    install_brave-nightly
+    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare   
     )
