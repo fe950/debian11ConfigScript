@@ -163,13 +163,7 @@ install_headless_server_Unattended() {
     only_basic_packages
     remove_grub_delay
     change_locales
-    #install_firewall
-    #install_xfce
-    #install_packages_for_desktop_use
     configure_terminal
-    #install_mullvad
-    #install_brave-nightly
-    #install_torbrowser-launcher
     #remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
@@ -184,8 +178,8 @@ install_minimal_desktop_Unattended() {
     install_xfce
     #install_packages_for_desktop_use
     configure_terminal
-    install_mullvad
-	install_brave-nightly
+    #install_mullvad
+	#install_brave-nightly
     install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
@@ -214,7 +208,7 @@ install_everything_for_Desktop__Unattended() {
 
 
 
-# -------START Array part, this control the order---------
+# -------START Array part, this control the order for manually use if not using templates ---------
 functions_array=(
     install_headless_server_Unattended
     install_minimal_desktop_Unattended
