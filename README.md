@@ -1,12 +1,12 @@
 #  For unattended configuration of software in debian 11.
 Easy to adapt to your needs
 
-##Choose between 3 templates without user interaction.
+### Choose between 3 templates without user interaction.
 - Headless server
 - Minimal Xfce Desktop environment
 - Desktop use with more apps
 .
-###Headless
+### Headless
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with `norwegian` time and date format
 - option to remove packages
@@ -14,7 +14,7 @@ Easy to adapt to your needs
 - set DNS to 1.1.1.1
 - basic packages `python, curl, wget, man, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, and git.`
 .
-###Minimal Xfce for VM
+### Minimal Xfce for VM
 - vpn client `mullvad`
 - small browser `Falcon`
 - editor `mousepad`
