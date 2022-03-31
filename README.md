@@ -35,7 +35,7 @@ sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian1
 ```
 Note: If script is runnig more then once, multiple rows is created in the files 
 .bashrc
-/root/,bashrc
+/root/.bashrc
 /etc/lokales.gen
  To prevent that, the script renames it self after first run.
 Rename it back and clean the files in the end.
