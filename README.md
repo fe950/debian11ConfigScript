@@ -1,10 +1,12 @@
-#  For unattended configuration of software in debian 11.
-#### Easy to adapt to your needs
+#  Debian 11 Congig Script
+This will help you build a lightweight desktop or headless server with unattended  onfiguration of software based on minimal debian 11 netinstall. Easy to change to your needs.
 
-### Choose between 3 templates without user interaction.
-- Headless server
-- Minimal Xfce Desktop environment
-- Desktop use with more apps
+Use of Denian 11 Config Script:<br/>
+- Choose between 3 templates without user interaction.<br/>
+- Headless server<br/>
+- Minimal Xfce Desktop environment<br/>
+- Desktop use with more apps<br/>
+<br/>
 
 ### Headless
 - change startup delay in Grub from 5 to 1 sec.
@@ -80,8 +82,8 @@ first run to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 - flatpack
 - tor browser
 - Cryptomator or simular
-- How to add new menu items to XFCE menu https://www.internalpointers.com/post/add-new-menu-items-xfce-menu
-- Minimal XFCE install https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html
-- Sed example edit inside config files https://stackoverflow.com/questions/11245144/replace-whole-line-containing-a-string-using-sed
-- sublie text rsync https://packagecontrol.io/packages/Rsync%20SS
+- {How to add new menu items to XFCE menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)
+- [Minimal XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
+- [Sed example edit inside config files](https://stackoverflow.com/questions/11245144/replace-whole-line-containing-a-string-using-sed)
+- [sublie text rsync](https://packagecontrol.io/packages/Rsync%20SS)
 - Fix so script can be run more than once. 
