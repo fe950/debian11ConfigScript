@@ -53,7 +53,7 @@ chmod +x ./deb11_cs.sh && ./deb11_cs.sh
 # Note:
 <br/> 
 Sudo can timeout if your download speeds are slow.<br/>
- 
+<br/>
 If script runs more then once, multiple rows is created in the files<br/> 
   .bashrc<br/>
   /root/.bashrc<br/>
@@ -74,8 +74,13 @@ Functionality<br/>
 - Mount network drives<br/>
 - [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)<br/>
 - [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
-- [Brave Issues](https://github.com/brave/brave-browser/issues)
-This site was not built using [GitHub Pages](https://pages.github.com/).
+
+**Here is a link in a list:**
+
+1. Text [Link](https://github.com/) text
+2. Text
+
+
 <br/>
 Software to be added<br/>
 - tor browser<br/>
