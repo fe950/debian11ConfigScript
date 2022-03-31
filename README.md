@@ -1,5 +1,7 @@
 #  Debian 11 Config Script
-This will help you build a lightweight desktop or headless server with unattended configuration of software based on a minimal debian 11 netinstall. Easy to change to your needs.
+This will help you build a lightweight desktop or headless server with unattended configuration of software based on a minimal debian 11 netinstall.
+
+Easy to change to your needs.
 <br/><br/>
 ### Choose between 3 templates without user interaction. ###
 - **Headless server**
