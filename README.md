@@ -62,9 +62,15 @@ Note: If script is runnig more then once, multiple rows is created in the files
 /etc/lokales.gen
  To prevent that, and to show that the machine is already configured the script renames it self after first run to "deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh"
 
-If Tor Browser is installed, only flatpack is installed.
-Install Tor Browser manually with 
 
+
+If Tor Browser is installed, only flatpack is installed.
+
+Install `torbrowser-launcher` like this: 
+```
+flatpak install flathub com.github.micahflee.torbrowser-launcher -y
+```
+Run `torbrowser-launcher` either by using the GUI desktop launcher, or by running:
 ```
 sudo flatpak run com.github.micahflee.torbrowser-launcher
 ```
