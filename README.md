@@ -70,8 +70,8 @@ Functionality<br/>
 - Mount network drives<br/>
 - [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)<br/>
 - [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
-- [Issues](https://github.com/brave/brave-browser/issues)
-
+- [Brave Issues](https://github.com/brave/brave-browser/issues)
+This site was not built using [GitHub Pages](https://pages.github.com/).
 <br/>
 Software to be added<br/>
 - tor browser<br/>
