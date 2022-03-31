@@ -1,5 +1,5 @@
-#  Debian 11 Congig Script
-This will help you build a lightweight desktop or headless server with unattended  onfiguration of software based on a minimal debian 11 netinstall. Easy to change to your needs.
+#  Debian 11 Config Script
+This will help you build a lightweight desktop or headless server with unattended  configuration of software based on a minimal debian 11 netinstall. Easy to change to your needs.
 <br/>
 Choose between 3 templates without user interaction.<br/>
 - Headless server<br/>
@@ -39,23 +39,27 @@ usermod -aG sudo yourusername
 reboot
 ```
 
-3. Download and chmod
+3. Download and review and edit so it fits you.
  ```
-sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/deb11_cs.sh && chmod +x deb11_cs.sh
+sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/deb11_cs.sh
 ```
-4. Review and change script so it suits you and run it.
+4. Give it permission to run and start it with this line:
 
 ```
-./deb11_cs.sh
+chmod +x ./deb11_cs.sh && ./deb11_cs.sh
 ```
 <br/><br/>
 
 # Note:
- If script runs more then once, multiple rows is created in the files<br/> 
-.bashrc<br/>
-/root/.bashrc<br/>
-/etc/lokales.gen<br/>
-To avoid that, script is renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
+<br/> 
+Sudo can timeout if your download speeds are slow.<br/>
+ 
+If script runs more then once, multiple rows is created in the files<br/> 
+  .bashrc<br/>
+  /root/.bashrc<br/>
+  /etc/lokales.gen<br/>
+<br/> 
+To avoid that, script renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 <br/><br/>
 
 # TODO 
