@@ -82,7 +82,7 @@ To avoid that, script renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.s
 
 
 <br/>
-**Software to be added**<br/>
+**Software to be added**
 - tor browser<br/>
 - Cryptomator<br/>
 - Gui for rsync or simular client to Onedrive, google Drive, etc.<br/>
