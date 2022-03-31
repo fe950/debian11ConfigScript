@@ -26,7 +26,7 @@ reboot
 sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/deb11_cs.sh && chmod +x deb11_cs.sh
 ```
 5. Review and make changes that fit your needs.
-```
+
 
 6. Run script
 ```
