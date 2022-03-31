@@ -62,22 +62,22 @@ To avoid that, script is renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAI
 Flaws
 - Can only be run once (check last lines before edit locales and bashrc)
 - Sudo can timeout if downloads are slow.<br/> 
-  Instead run script as sudo and use sudo to user inside script when needed.
+  Instead run script as sudo and use sudo to user inside script when needed.<br/>
 <br/>
 Functionality<br/>
 - Add ssh keys (option to paste key)<br/>
 - Add options for Debian Hardening<br/>
-- Mount network drives
-- [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)
-- [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
+- Mount network drives<br/>
+- [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)<br/>
+- [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)<br/>
 <br/>
-Software to be added
-- tor browser
-- Cryptomator
-- Gui for rsync or simular client to Onedrive, google Drive, etc.
-- Smbshare
-- Nvidia and Amd gpu driver
-- flatpack ?
+Software to be added<br/>
+- tor browser<br/>
+- Cryptomator<br/>
+- Gui for rsync or simular client to Onedrive, google Drive, etc.<br/>
+- Smbshare<br/>
+- Nvidia and Amd gpu driver<br/>
+- flatpack ?<br/>
 
 
 <br/>
