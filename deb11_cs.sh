@@ -6,7 +6,7 @@
 # lines in eof in /etc/locale.gen, /root/.bashrc, and .bashrc.
 # Just clean those files and you can runs script multiple times without problem.
 
-mv "$0" debian11ConfigScript-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh 
+mv "$0" deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh 
 
 
 # Fancy Colours in script
@@ -117,9 +117,8 @@ install_torbrowser-launcher() {
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     
    for run in {1..5}; do echo ""; done
-    echo $GREEN"     To finish Tor setup, do a MANUAL reboot AFTER this script is done."
-    echo "     Then run part 2 of the script. Its a requirement when using flatpack."
-    askYesNo "     Can you do that?"$NC true
+    echo $GREEN"     To finish Tor setup you need to do a reboot manually after this script  and run '$NC sudo flatpak run com.github.micahflee.torbrowser-launcher $GREEN '"
+     askYesNo "     Can you do that?"$NC true
     DOIT=$ANSWER
     if [ "$DOIT" = false ]; then
     for run in {1..3}; do echo ""; done
@@ -129,7 +128,8 @@ install_torbrowser-launcher() {
     echo -n "know, " && sleep 1 && echo -n "thats " && sleep 0.4 && echo -n "just " && sleep 0.4
     echo -n "like " && sleep 0.7 && echo -n "your" && sleep 0.3
     for run in {1..5}; do sleep 0.4 && echo -n "."; done
-    echo -n "opinion  " && sleep 2 && echo "   Just DO it! "  && sleep 2
+    echo -n "opinion  " && sleep 1
+	echo "Just DO it! "  && sleep 1
     fi
 }
 remove_apps() {

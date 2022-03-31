@@ -23,24 +23,29 @@ reboot
 
 4. Clone and do the usual thing or just copy below to Install wget, download script and give it permission to run
  ```
-sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/debian11ConfigScript.sh && chmod +x debian11ConfigScript.sh
+sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian11ConfigScript/main/deb11_cs.sh && chmod +x deb11_cs.sh
 ```
 5. Review and make changes that fit your needs.
 ```
-cat debian11ConfigScript.sh
-```
+
 6. Run script
 ```
-./debian11ConfigScript.sh
+./deb11_cs.sh
 
 ```
 Note: If script is runnig more then once, multiple rows is created in the files 
 .bashrc
 /root/,bashrc
 /etc/lokales.gen
- To prevent that script renames it self after first run.
+ To prevent that, the script renames it self after first run.
 Rename it back and clean the files in the end.
 
+
+If Tor Browser is installed, only flatpack is installed.
+Install Tor Browser manually with 
+```
+sudo flatpak run com.github.micahflee.torbrowser-launcher
+```
 
 
 
@@ -71,7 +76,21 @@ Like Headless server+ minimal Xfce +
 
 
 
-### TODO
+### TODO 
+
+How to add new menu items to XFCE menu
+https://www.internalpointers.com/post/add-new-menu-items-xfce-menu
+
+Minimal XFCE install
+https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html
+
+
+Sed example edit inside config files
+https://stackoverflow.com/questions/11245144/replace-whole-line-containing-a-string-using-sed
+
+sublie text rsync
+https://packagecontrol.io/packages/Rsync%20SSH
+
 - Fix so script can be run more than once. 
 - Fix so script can be run with sudo (risk for timeout if slow download speed)
 - Add wireshark to packages, (install is interupted by a dialog)
