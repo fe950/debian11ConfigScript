@@ -69,7 +69,9 @@ Functionality<br/>
 - Add options for Debian Hardening<br/>
 - Mount network drives<br/>
 - [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)<br/>
-- [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)<br/>
+- [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
+- [Issues](https://github.com/brave/brave-browser/issues)
+
 <br/>
 Software to be added<br/>
 - tor browser<br/>
@@ -81,11 +83,11 @@ Software to be added<br/>
 
 
 <br/>
-Problemeatic Software
-- wireshark (is interupted by a dialog)
-- Add launcher to nethogs in menu as non root user
-- Configure qbittorrent so it only bind to vpn interface
-- Spotify
-<br/>
+Problemeatic Software<br/>
+- wireshark (is interupted by a dialog)<br/>
+- Add launcher to nethogs in menu as non root user<br/>
+- Configure qbittorrent so it only bind to vpn interface<br/>
+- Spotify<br/>
+
 
 
