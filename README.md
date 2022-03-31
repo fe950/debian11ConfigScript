@@ -66,6 +66,9 @@ first run to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 
 
 
+
+
+
 If Tor Browser is installed, only flatpack is installed.
 
 Install `torbrowser-launcher` like this: 
