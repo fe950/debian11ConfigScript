@@ -1,11 +1,11 @@
 #  For unattended configuration of software in debian 11.
-Easy to adapt to your needs
+#### Easy to adapt to your needs
 
-#### Choose between 3 templates without user interaction.
+### Choose between 3 templates without user interaction.
 - Headless server
 - Minimal Xfce Desktop environment
 - Desktop use with more apps
-.
+
 ### Headless
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with `norwegian` time and date format
@@ -13,7 +13,7 @@ Easy to adapt to your needs
 - set DNS to 1.1.1.1
 - option to remove packages
 - basic packages `python, curl, wget, man, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, and git.`
-.
+
 ### Minimal Xfce for VM
 - vpn client `mullvad`
 - small browser `Falcon`
@@ -21,7 +21,7 @@ Easy to adapt to your needs
 - mount helper `gigolo`
 - image viewer `viewnior`
 - firewall `ufw  gufw` (not automaticly activated)
-.
+
 ###Desktop use
 - `brave-browser`
 - more packages `gimp, vlc, gparted, geogebra and librecad`
@@ -29,7 +29,7 @@ Easy to adapt to your needs
 
 
 
-## Installation and use
+# Installation and use
  1. Install debian 11 netinstall with sshserver
  2. Fix Su and reboot
 ```
@@ -50,7 +50,8 @@ sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian1
 ,
 ,
 
-Note: If script is runnig more then once, multiple rows is created in the files 
+#### Note:
+ f script is runnig more then once, multiple rows is created in the files 
 .bashrc
 /root/.bashrc
 /etc/lokales.gen
@@ -65,7 +66,7 @@ first run to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 
 
 
-### TODO 
+# TODO 
 - Fix so script can be run with sudo (risk for timeout if slow download speed)
 - Add wireshark to packages, (install is interupted by a dialog)
 - Add launcher to nethogs in menu as non root user
