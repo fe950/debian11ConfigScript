@@ -1,6 +1,10 @@
 #  For unattended installation and configuring software in debian 11.
 
-3 templates without user interaction.
+## Easy to adapt to your needs
+
+## Choose between 3 templates without user interaction.
+
+
 
 1. headless server with only base tools and python installed
 2- + minimal Xfce desktop 
