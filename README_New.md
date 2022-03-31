@@ -8,6 +8,10 @@ Choose between 3 templates without user interaction.
 
 
 
+
+
+
+
 ### Headless server
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with norwegian time and date format
