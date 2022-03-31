@@ -60,8 +60,9 @@ Note: If script is runnig more then once, multiple rows is created in the files
 .bashrc
 /root/.bashrc
 /etc/lokales.gen
- To prevent that, and to show that the machine is already configured the script renames it self after 
- first run to 'deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh'
+To prevent that, and to show that the machine is already configured
+the script renames it self after 
+first run to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 
 
 
