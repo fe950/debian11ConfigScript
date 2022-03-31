@@ -6,16 +6,16 @@ Choose between 3 templates without user interaction.<br/>
 - Minimal Xfce Desktop environment<br/>
 - Desktop use with more apps<br/>
 <br/>
-
-### Headless
+<br/>
+**Headless**
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with `norwegian` time and date format
 - configure terminal aliases and nano as the preselected editor
 - set DNS to 1.1.1.1
 - option to remove packages
 - basic packages `python, curl, wget, man, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, and git.`
-
-### Minimal Xfce for VM
+<br/>
+**Minimal Xfce for VM**
 - Headless Server +
 - vpn client `mullvad`
 - small browser `Falcon`
@@ -23,8 +23,8 @@ Choose between 3 templates without user interaction.<br/>
 - mount helper `gigolo`
 - image viewer `viewnior`
 - firewall `ufw  gufw`
-
-### Desktop use
+<br/>
+**Desktop use**
 - Headless Server and Minimal Xfce +
 - `brave-browser`
 - more packages `gimp, vlc, gparted, geogebra and librecad`
@@ -63,12 +63,12 @@ To avoid that, script renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.s
 <br/><br/>
 
 # TODO 
-Flaws
+**Flaws**
 - Can only be run once (check last lines before edit locales and bashrc)
 - Sudo can timeout if downloads are slow.<br/> 
   Instead run script as sudo and use sudo to user inside script when needed.<br/>
 <br/>
-Functionality<br/>
+**Functionality**<br/>
 - Add ssh keys (option to paste key)<br/>
 - Add options for Debian Hardening<br/>
 - Mount network drives<br/>
@@ -82,7 +82,7 @@ Functionality<br/>
 
 
 <br/>
-Software to be added<br/>
+**Software to be added**<br/>
 - tor browser<br/>
 - Cryptomator<br/>
 - Gui for rsync or simular client to Onedrive, google Drive, etc.<br/>
@@ -92,7 +92,7 @@ Software to be added<br/>
 
 
 <br/>
-Problemeatic Software<br/>
+**Problemeatic Software**<br/>
 - wireshark (is interupted by a dialog)<br/>
 - Add launcher to nethogs in menu as non root user<br/>
 - Configure qbittorrent so it only bind to vpn interface<br/>
