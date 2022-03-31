@@ -115,22 +115,6 @@ install_brave-nightly() {
 install_torbrowser-launcher() {
     sudo apt -qq install flatpak -y
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
-   for run in {1..5}; do echo ""; done
-    echo $GREEN"     To finish Tor setup you need to do a reboot manually after this script  and run '$NC sudo flatpak run com.github.micahflee.torbrowser-launcher $GREEN '"
-     askYesNo "     Can you do that?"$NC true
-    DOIT=$ANSWER
-    if [ "$DOIT" = false ]; then
-    for run in {1..3}; do echo ""; done
-    echo -n "Yeah " && sleep 0.7 && echo -n "well " && sleep 0.3
-    for run in {1..6}; do sleep 0.4 && echo -n "."; done
-    echo "" && echo "" && sleep 1.4 && echo -n " You " && sleep 0.6
-    echo -n "know, " && sleep 1 && echo -n "thats " && sleep 0.4 && echo -n "just " && sleep 0.4
-    echo -n "like " && sleep 0.7 && echo -n "your" && sleep 0.3
-    for run in {1..5}; do sleep 0.4 && echo -n "."; done
-    echo -n "opinion  " && sleep 1
-	echo "Just DO it! "  && sleep 1
-    fi
 }
 remove_apps() {
     sudo apt -qq remove example-app -y
@@ -201,6 +185,7 @@ install_minimal_desktop_Unattended() {
     #install_packages_for_desktop_use
     configure_terminal
     install_mullvad
+	install_brave-nightly
     install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
