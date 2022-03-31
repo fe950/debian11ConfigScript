@@ -140,6 +140,7 @@ set_dns_to_cloudflare() {
     echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
 }
 stop_unattended_run() {
+	rm .wget-hsts
     sudo apt -qq update && sudo apt -qq upgrade -y && sudo apt -qq full-upgrade -y && sudo apt -qq autoremove -y
       echo ""
       echo $GREEN"Everything is ready."$RED

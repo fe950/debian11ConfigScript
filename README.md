@@ -1,8 +1,7 @@
 #  Debian 11 Congig Script
-This will help you build a lightweight desktop or headless server with unattended  onfiguration of software based on minimal debian 11 netinstall. Easy to change to your needs.
-
-Use of Denian 11 Config Script:<br/>
-- Choose between 3 templates without user interaction.<br/>
+This will help you build a lightweight desktop or headless server with unattended  onfiguration of software based on a minimal debian 11 netinstall. Easy to change to your needs.
+<br/>
+Choose between 3 templates without user interaction.<br/>
 - Headless server<br/>
 - Minimal Xfce Desktop environment<br/>
 - Desktop use with more apps<br/>
@@ -17,19 +16,19 @@ Use of Denian 11 Config Script:<br/>
 - basic packages `python, curl, wget, man, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, and git.`
 
 ### Minimal Xfce for VM
+- Headless Server +
 - vpn client `mullvad`
 - small browser `Falcon`
 - editor `mousepad`
 - mount helper `gigolo`
 - image viewer `viewnior`
-- firewall `ufw  gufw` (not automaticly activated)
+- firewall `ufw  gufw`
 
-###Desktop use
+### Desktop use
+- Headless Server and Minimal Xfce +
 - `brave-browser`
 - more packages `gimp, vlc, gparted, geogebra and librecad`
-.
-
-
+<br/>
 
 # Installation and use
  1. Install debian 11 netinstall with sshserver
@@ -49,41 +48,45 @@ sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian1
 ```
 ./deb11_cs.sh
 ```
-,
-,
+<br/><br/>
 
-#### Note:
- f script is runnig more then once, multiple rows is created in the files 
-.bashrc
-/root/.bashrc
-/etc/lokales.gen
-To prevent that, and to show that the machine is already configured
-the script renames it self after 
-first run to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
-.
-.
-
-
-
-
-
+# Note:
+ If script runs more then once, multiple rows is created in the files<br/> 
+.bashrc<br/>
+/root/.bashrc<br/>
+/etc/lokales.gen<br/>
+To avoid that, the script renames it self after first run<br/>
+to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
+<br/><br/>
 
 # TODO 
-- Fix so script can be run with sudo (risk for timeout if slow download speed)
-- Add wireshark to packages, (install is interupted by a dialog)
-- Add launcher to nethogs in menu as non root user
-- Installs qbittorrent and configure that only bind to Mullvad adapter
-- Automatic installation ssh keys
-- rsync or simular client to Onedrive, google Drive
-- Smbshare
-- Snapd and Spotify
-- Nvidia driver installation
-- Debian Hardening
-- flatpack
+Flaws
+- Can only be run once (check last lines before edit locales and bashrc)
+- Sudo can timeout if downloads are slow. 
+  Instead run script as sudo and use sudo to user inside script when needed.
+<br/>
+Functionality
+- Add ssh keys (option to paste key)
+- Add options for Debian Hardening
+- Mount network drives
+- [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)
+- [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
+<br/>
+Software to be added
 - tor browser
-- Cryptomator or simular
-- {How to add new menu items to XFCE menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)
-- [Minimal XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
-- [Sed example edit inside config files](https://stackoverflow.com/questions/11245144/replace-whole-line-containing-a-string-using-sed)
-- [sublie text rsync](https://packagecontrol.io/packages/Rsync%20SS)
-- Fix so script can be run more than once. 
+- Cryptomator
+- Gui for rsync or simular client to Onedrive, google Drive, etc.
+- Smbshare
+- Nvidia and Amd gpu driver
+- flatpack ?
+
+
+<br/>
+Problemeatic Software
+- wireshark (is interupted by a dialog)
+- Add launcher to nethogs in menu as non root user
+- Configure qbittorrent so it only bind to vpn interface
+- Spotify
+<br/>
+
+
