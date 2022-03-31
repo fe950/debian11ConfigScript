@@ -1,7 +1,7 @@
 #  For unattended configuration of software in debian 11.
 Easy to adapt to your needs
 
-### Choose between 3 templates without user interaction.
+#### Choose between 3 templates without user interaction.
 - Headless server
 - Minimal Xfce Desktop environment
 - Desktop use with more apps
@@ -9,9 +9,9 @@ Easy to adapt to your needs
 ### Headless
 - change startup delay in Grub from 5 to 1 sec.
 - configures locales with `norwegian` time and date format
-- option to remove packages
-- configure terminal (aliases and nano as preselected editor)
+- configure terminal aliases and nano as the preselected editor
 - set DNS to 1.1.1.1
+- option to remove packages
 - basic packages `python, curl, wget, man, dnsutils, net-tools, tcpdump, mc, lynx, nmap, nethogs, and git.`
 .
 ### Minimal Xfce for VM
@@ -29,12 +29,12 @@ Easy to adapt to your needs
 
 
 
-## prerequisite and install
+## Installation and use
  1. Install debian 11 netinstall with sshserver
  2. Fix Su and reboot
 ```
 su -
-usermod -aG sudo joe
+usermod -aG sudo yourusername
 reboot
 ```
 
@@ -47,7 +47,9 @@ sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian1
 ```
 ./deb11_cs.sh
 ```
-.
+,
+,
+
 Note: If script is runnig more then once, multiple rows is created in the files 
 .bashrc
 /root/.bashrc
