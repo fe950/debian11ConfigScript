@@ -113,7 +113,7 @@ install_brave-nightly() {
     sudo apt -qq update && sudo apt -qq install brave-browser-nightly -y
 }
 install_torbrowser-launcher() {
-    sudo apt -qq install flatpak -y
+    sudo apt -qq install flatpak -y && sleep 1 && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 remove_apps() {
