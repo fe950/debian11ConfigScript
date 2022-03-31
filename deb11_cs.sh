@@ -112,10 +112,6 @@ install_brave-nightly() {
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-nightly-archive-keyring.gpg arch=amd64] https://brave-browser-apt-nightly.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-nightly.list
     sudo apt -qq update && sudo apt -qq install brave-browser-nightly -y
 }
-install_torbrowser-launcher() {
-    sudo apt -qq install flatpak -y && sleep 1 && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-}
 remove_apps() {
     sudo apt -qq remove example-app -y
 }
@@ -138,6 +134,7 @@ configure_terminal() {
     echo "alias la='ls -A'" >> ~/.bashrc
     echo "alias l='ls -CF'" >> ~/.bashrc
     echo 'SELECTED_EDITOR="/bin/nano"' >> ~/.selected_editor
+	rm -r Videos Templates Public Music Pictures
 }
 set_dns_to_cloudflare() {
     #Set dns server to cloudflare
@@ -180,7 +177,6 @@ install_minimal_desktop_Unattended() {
     configure_terminal
     #install_mullvad
 	#install_brave-nightly
-    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
@@ -197,7 +193,6 @@ install_everything_for_Desktop__Unattended() {
     configure_terminal
     install_mullvad
     install_brave-nightly
-    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare
     stop_unattended_run 
@@ -222,7 +217,6 @@ functions_array=(
     configure_terminal
     install_mullvad
     install_brave-nightly
-    install_torbrowser-launcher
     remove_apps
     set_dns_to_cloudflare   
     )
