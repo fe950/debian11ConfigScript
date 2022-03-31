@@ -43,14 +43,11 @@ Rename it back and clean the files in the end.
 
 If Tor Browser is installed, only flatpack is installed.
 Install Tor Browser manually with 
-```
+ ```
 sudo flatpak run com.github.micahflee.torbrowser-launcher
 ```
 
 
-
-
-`
 
 ### Headless server
 - change startup delay in Grub from 5 to 1 sec.
