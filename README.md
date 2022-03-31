@@ -55,19 +55,18 @@ sudo apt install wget -y && wget https://raw.githubusercontent.com/fe950/debian1
 .bashrc<br/>
 /root/.bashrc<br/>
 /etc/lokales.gen<br/>
-To avoid that, the script renames it self after first run<br/>
-to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
+To avoid that, script is renames to `deb11_cs-HAS_ALREADY_RUN-RENAME_TO_RUN_AGAIN.sh`
 <br/><br/>
 
 # TODO 
 Flaws
 - Can only be run once (check last lines before edit locales and bashrc)
-- Sudo can timeout if downloads are slow. 
+- Sudo can timeout if downloads are slow.<br/> 
   Instead run script as sudo and use sudo to user inside script when needed.
 <br/>
-Functionality
-- Add ssh keys (option to paste key)
-- Add options for Debian Hardening
+Functionality<br/>
+- Add ssh keys (option to paste key)<br/>
+- Add options for Debian Hardening<br/>
 - Mount network drives
 - [Customize Xfce Menu](https://www.internalpointers.com/post/add-new-menu-items-xfce-menu)
 - [Schrink XFCE install](https://www.devuan.org/os/documentation/dev1fanboy/en/minimal-xfce-install.html)
