@@ -78,16 +78,26 @@ only_basic_packages() {
     # preconfigure git for use
     sudo apt -qq install git -y
     echo -e "[user]\n\temail = bill.gates@hotmail.com" > ~/.gitconfig
-}
-remove_grub_delay() {
-    sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/' /etc/default/grub
+    sudo sed -i 's/^GRUB_TIMEOUT=*.*/GRUB_TIMEOUT=1/g' /etc/default/grub
     sudo update-grub
 }
-change_locales() {
+old locales() {
     echo "nb_NO.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen > /dev/null
     sudo locale-gen
     sudo update-locale LC_TIME=nb_NO.UTF-8
 }
+
+change_locales() {
+    sudo sed -i '/nb_NO.UTF-8/d' /etc/locale.gen
+    sudo sed -i 's/^[^#]/# &/' /etc/locale.gen
+    sudo sed -i '$anb_NO.UTF-8 UTF-8' /etc/locale.gen
+    sudo locale-gen
+    sudo update-locale LC_TIME=nb_NO.UTF-8
+}
+
+
+
+
 install_firewall() {
     #Firewall needs to be enabled manually after reboot
     sudo apt -qq install ufw gufw -y
@@ -115,7 +125,8 @@ remove_apps() {
     sudo apt -qq remove example-app -y
 }
 configure_terminal() {
-    #root terminal
+    # root terminal
+    # add aliases
     echo "alias cls='clear "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias tid='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias klocka='date "+%T"'" | sudo tee -a /root/.bashrc > /dev/null
@@ -124,7 +135,11 @@ configure_terminal() {
     echo "alias la='ls -A'" | sudo tee -a /root/.bashrc > /dev/null
     echo "alias l='ls -CF'" | sudo tee -a /root/.bashrc > /dev/null
     echo 'SELECTED_EDITOR="/bin/nano"' | sudo tee /root/.selected_editor > /dev/null
-    #user terminal
+    
+    # user terminal
+    # add shortcut to etc
+    ln -s /etc ~/etc
+    # add aliases
     echo "alias cls='clear "+%T"'" >> ~/.bashrc
     echo "alias tid='date "+%T"'" >> ~/.bashrc
     echo "alias klocka='date "+%T"'" >> ~/.bashrc
@@ -133,7 +148,7 @@ configure_terminal() {
     echo "alias la='ls -A'" >> ~/.bashrc
     echo "alias l='ls -CF'" >> ~/.bashrc
     echo 'SELECTED_EDITOR="/bin/nano"' >> ~/.selected_editor
-	rm -r Videos Templates Public Music Pictures
+	rm -rf Videos Templates Public Music Pictures
 }
 set_dns_to_cloudflare() {
     #Set dns server to cloudflare
@@ -158,7 +173,6 @@ stop_unattended_run() {
 # Headless Server
 install_headless_server_Unattended() {
     only_basic_packages
-    remove_grub_delay
     change_locales
     configure_terminal
     #remove_apps
@@ -169,7 +183,6 @@ install_headless_server_Unattended() {
 #Basic with Xfce
 install_minimal_desktop_Unattended() {
     only_basic_packages
-    remove_grub_delay
     change_locales
     install_firewall
     install_xfce
@@ -185,7 +198,6 @@ install_minimal_desktop_Unattended() {
 # Install for desktop with everything Included
 install_everything_for_Desktop__Unattended() {
     only_basic_packages
-    remove_grub_delay
     change_locales
     install_firewall
     install_xfce
@@ -209,7 +221,6 @@ functions_array=(
     install_minimal_desktop_Unattended
     install_everything_for_Desktop__Unattended
     only_basic_packages
-    remove_grub_delay
     change_locales
     install_firewall
     install_xfce
