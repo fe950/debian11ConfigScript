@@ -81,12 +81,11 @@ only_basic_packages() {
     sudo sed -i 's/^GRUB_TIMEOUT=*.*/GRUB_TIMEOUT=1/g' /etc/default/grub
     sudo update-grub
 }
-old locales() {
+old_locales() {
     echo "nb_NO.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen > /dev/null
     sudo locale-gen
     sudo update-locale LC_TIME=nb_NO.UTF-8
 }
-
 change_locales() {
     sudo sed -i '/nb_NO.UTF-8/d' /etc/locale.gen
     sudo sed -i 's/^[^#]/# &/' /etc/locale.gen
@@ -94,10 +93,6 @@ change_locales() {
     sudo locale-gen
     sudo update-locale LC_TIME=nb_NO.UTF-8
 }
-
-
-
-
 install_firewall() {
     #Firewall needs to be enabled manually after reboot
     sudo apt -qq install ufw gufw -y
