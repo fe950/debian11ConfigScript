@@ -35,6 +35,7 @@ Easy to change to your needs.
  2. Fix Su and reboot
 ```
 su -
+apt install sudo
 usermod -aG sudo yourusername
 reboot
 ```
